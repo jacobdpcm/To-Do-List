@@ -1,9 +1,6 @@
 import './style.css';
-import sun from './images/sun.svg';
+import { categorySetup } from './sidebarCat.js';
 
-const body = document.querySelector('body');
-const imageSun = document.createElement('img');
-imageSun.src = sun;
-body.appendChild(imageSun);
+categorySetup();
 
 console.log('test');

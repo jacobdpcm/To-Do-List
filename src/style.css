@@ -19,8 +19,14 @@ body {
     padding: 2rem;
 }
 
-.cat image{
-    width: 1rem;
+.cat{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cat img{
+    width: 2rem;
     height: auto;
 }
 

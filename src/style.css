@@ -11,12 +11,18 @@ body {
     grid-template-columns: 20rem 1fr;
 }
 
-.sidebar {
+.sidebar{
     background-color: rgb(175, 172, 172);
     display: flex;
     flex-direction: column;
     gap: 3rem;
     padding: 2rem;
+}
+
+.categories{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .cat{

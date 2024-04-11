@@ -1,6 +1,7 @@
 import sun from './images/sun.svg';
 import calender from './images/calender.svg';
 import party from './images/party.svg';
+import list from './images/list.svg';
 
 function createCategory(className, catName, imageName){
     const categories = document.querySelector('.categories')
@@ -21,6 +22,7 @@ function createCategory(className, catName, imageName){
 
 function categorySetup(){
     createCategory('today', 'Today', sun);
+    createCategory('all', 'All To-Dos', list);
     createCategory('week', 'This Week', calender);
     createCategory('special', 'Special Events', party);
 }

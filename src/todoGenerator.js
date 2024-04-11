@@ -1,26 +1,35 @@
-function newTodo(title, description, dueDate, priority, checked){
-    let todoTitle = title;
-    let todoDescription = description;
-    let todoDueDate = dueDate;
-    let todoPriority = priority;
-    let todoChecked = checked;
-
-    const getTodo = () => {return [todoTitle, todoDescription, todoDueDate, todoPriority, todoChecked]};
-    const updateDate = (newDate) => {todoDueDate = newDate};
-    const updatePriority = (newPriority) => {todoPriority = newPriority};
-    const updateChecked = (newChecked) => {todoChecked = newChecked};
-
-    return {getTodo, updateDate, updatePriority, updateChecked};
-}
-
 function allTodos(){
     let arrayTodos = [];
 
-    const getArrayTodos = () => {return arrayTodos};
-    const addTodo = (todo) => {arrayTodos.push(todo.getTodo())};
-    const removeTodo = (todo) => {arrayTodos.splice(indexOf(todo.getTodo(), 1))}
+    function newTodo(title, description, dueDate, priority, project){
+        let todoTitle = title;
+        let todoDescription = description;
+        let todoDueDate = dueDate;
+        let todoPriority = priority;
+        let todoProject = project;
+        let todoChecked = false;
 
-    return {getArrayTodos, addTodo, removeTodo}
+        return {todoTitle, todoDescription, todoDueDate, todoPriority, todoProject, todoChecked};
+    }
+
+    const getArrayTodos = () => {return arrayTodos};
+    const addTodo = (title, description, dueDate, priority, project) => {
+        const todo = newTodo(title, description, dueDate, priority, project);
+        arrayTodos.push(todo);
+    };
+    const removeTodo = (todo) => {arrayTodos.splice(indexOf(todo, 1))}
+
+    //set value to -1 if unchanged
+    const updateTodo = (oldTodoIndex, newTitle, newDescription, newDate, newPriority, newProject, newChecked) => {
+        if(newTitle !== null){arrayTodos[oldTodoIndex].todoTitle = newTitle};
+        if(newDescription !== null){arrayTodos[oldTodoIndex].todoDescription = newDescription};
+        if(newDate !== null){arrayTodos[oldTodoIndex].todoDueDate = newDate};
+        if(newPriority !== null){arrayTodos[oldTodoIndex].todoPriority = newPriority};
+        if(newProject !== null){arrayTodos[oldTodoIndex].todoProject = newProject};
+        if(newChecked !== null){arrayTodos[oldTodoIndex].todoChecked = newChecked}; 
+    }
+
+    return {getArrayTodos, addTodo, removeTodo, updateTodo}
 }
 
-export { newTodo, allTodos }
+export { allTodos }

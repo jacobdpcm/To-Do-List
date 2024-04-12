@@ -1,8 +1,8 @@
 import './style.css';
-import { categorySetup } from './sidebarCat.js';
+import { renderAddTasks, categorySetup } from './sidebarCat.js';
 import { allTodos } from './todoGenerator.js';
 import { renderAllTodos } from './alltodosDOM.js';
-
+renderAddTasks();
 categorySetup();
 
 const tasks = allTodos();

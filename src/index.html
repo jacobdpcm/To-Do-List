@@ -7,6 +7,9 @@
   </head>
   <body>
     <div class="sidebar">
+      <div class="addTasks">
+        
+      </div>
       <div class="categories">
 
       </div>
@@ -19,6 +22,40 @@
 
     <div class="content">
     
+    </div>
+
+    <div class="overlay hidden">
+      <div class="formWrapper">
+        <form class="taskForm" action="">
+          <h1>Add a new task:</h1>
+          <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title">
+          </div>
+          <div>
+            <label for="author">Description:</label>
+            <input type="text" id="author">
+          </div>
+          <div>
+            <label for="pages">Due Date:</label>
+            <input type="number" id="pages">
+          </div>
+          <div>
+            <label for="read">Priority:</label>
+            <div>
+              <label for="read">Yes</label><input type="radio" id="read" name="read" value="Read">
+              <label for="notread">No</label><input type="radio" id="notread" name="read" value="Not Read" checked>
+            </div>
+          </div>
+          <div>
+            <label for="pages">Due Date:</label>
+            <input type="number" id="pages">
+          </div>
+          <div class="confirm">
+            <button type="button" class="confbut">Confirm</button>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>

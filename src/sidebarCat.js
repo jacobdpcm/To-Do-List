@@ -21,8 +21,16 @@ function createCategory(parent, className, catName, imageName){
     category.appendChild(name);
 }
 
+function toggleOverlay(overlayClass){
+    const overlay = document.querySelector(overlayClass);
+    overlay.classList.toggle('hidden');
+}
+
 function renderAddTasks(){
     createCategory(document.querySelector('.addTasks'), 'addTodo', 'Add To-Do', plus);
+    const buttonTodo = document.querySelector('.addTodo');
+    buttonTodo.addEventListener('click', () => {toggleOverlay('.hidden')});
+
     createCategory(document.querySelector('.addTasks'), 'addProject', 'Add Project', plus);
 }
 
@@ -32,5 +40,7 @@ function categorySetup(){
     createCategory(document.querySelector('.categories'), 'week', 'This Week', calender);
     createCategory(document.querySelector('.categories'), 'special', 'Special Events', party);
 }
+
+
 
 export { renderAddTasks, categorySetup };

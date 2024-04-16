@@ -26,12 +26,19 @@ function toggleOverlay(overlayClass){
     overlay.classList.toggle('hidden');
 }
 
+function overlayButtonSetup(){
+    const cancel = document.querySelector('.cancel');
+    cancel.addEventListener('click', () => {toggleOverlay('.overlay')})
+}
+
 function renderAddTasks(){
     createCategory(document.querySelector('.addTasks'), 'addTodo', 'Add To-Do', plus);
     const buttonTodo = document.querySelector('.addTodo');
-    buttonTodo.addEventListener('click', () => {toggleOverlay('.hidden')});
+    buttonTodo.addEventListener('click', () => {toggleOverlay('.overlay')});
 
     createCategory(document.querySelector('.addTasks'), 'addProject', 'Add Project', plus);
+
+    overlayButtonSetup();
 }
 
 function categorySetup(){

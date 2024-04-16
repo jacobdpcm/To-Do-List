@@ -26,6 +26,12 @@ form h1{
     justify-content: center;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
 form>div{
     display: flex;
     justify-content: space-between;

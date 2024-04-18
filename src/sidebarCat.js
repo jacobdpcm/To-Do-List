@@ -27,8 +27,12 @@ function toggleOverlay(overlayClass){
 }
 
 function overlayButtonSetup(){
-    const cancel = document.querySelector('.cancel');
-    cancel.addEventListener('click', () => {toggleOverlay('.overlay')})
+    const cancel = document.querySelector('.cancelButton');
+    cancel.addEventListener('click', () => {
+        toggleOverlay('.overlay');
+        const form = document.querySelector('.taskForm');
+        form.reset();
+    })
 }
 
 function renderAddTasks(){
@@ -47,7 +51,5 @@ function categorySetup(){
     createCategory(document.querySelector('.categories'), 'week', 'This Week', calender);
     createCategory(document.querySelector('.categories'), 'special', 'Special Events', party);
 }
-
-
 
 export { renderAddTasks, categorySetup };

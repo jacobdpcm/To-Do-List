@@ -37,6 +37,11 @@ form>div{
     justify-content: space-between;
 }
 
+.overlayButtons{
+    display: flex;
+    justify-content: space-between;
+}
+
 .hidden{
     display: none;
 }

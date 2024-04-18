@@ -19,7 +19,7 @@ function allTodos(){
     };
     const removeTodo = (todo) => {arrayTodos.splice(indexOf(todo, 1))}
 
-    //set value to -1 if unchanged
+    //set value to null if unchanged
     const updateTodo = (oldTodoIndex, newTitle, newDescription, newDate, newPriority, newProject, newChecked) => {
         if(newTitle !== null){arrayTodos[oldTodoIndex].todoTitle = newTitle};
         if(newDescription !== null){arrayTodos[oldTodoIndex].todoDescription = newDescription};

@@ -17,7 +17,7 @@ function addButtonSetup(){
         const priority = document.querySelector('#priority');
         const project = document.querySelector('#project');
 
-        tasks.addTodo(title.value, description.value, dueDate.value, priority.value, project.value)
+        allTodos.addTodo(title.value, description.value, dueDate.value, priority.value, project.value)
         clearContent();
         renderAllTodos(tasks.getArrayTodos());
     })
@@ -27,15 +27,15 @@ addButtonSetup();
 renderAddTasks();
 categorySetup();
 
-const tasks = allTodos();
-tasks.addTodo('Groceries', 'get them groceries', 'Today', 'Important', 'none');
-tasks.addTodo('Groceries', 'get them groceries', 'Today', 'Important', 'none');
+//const tasks = allTodos;
+allTodos.addTodo('Groceries', 'get them groceries', 'Today', 'Important', 'none');
+allTodos.addTodo('Groceries', 'get them groceries', 'Today', 'Important', 'none');
 
 
-console.log(tasks.getArrayTodos());
+console.log(allTodos.getArrayTodos());
 
 
-renderAllTodos(tasks.getArrayTodos());
+renderAllTodos(allTodos.getArrayTodos());
 
 
 

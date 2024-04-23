@@ -1,4 +1,4 @@
-function allTodos(){
+const allTodos = (function(){
     let arrayTodos = [];
 
     function newTodo(title, description, dueDate, priority, project){
@@ -30,6 +30,6 @@ function allTodos(){
     }
 
     return {getArrayTodos, addTodo, removeTodo, updateTodo}
-}
+})();
 
 export { allTodos }

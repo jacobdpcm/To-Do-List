@@ -3,6 +3,8 @@ import calender from './images/calender.svg';
 import party from './images/party.svg';
 import list from './images/list.svg';
 import plus from './images/plus.svg';
+import { allTodos } from './todoGenerator.js';
+import { renderAllTodos } from './alltodosDOM.js';
 
 function createCategory(parent, className, catName, imageName){
     const categories = parent;
@@ -26,6 +28,11 @@ function toggleOverlay(overlayClass){
     overlay.classList.toggle('hidden');
 }
 
+function clearContent(){
+    const content = document.querySelector('.content');
+    content.innerHTML = '';
+}
+
 function overlayButtonSetup(){
     const cancel = document.querySelector('.cancelButton');
     cancel.addEventListener('click', () => {
@@ -33,7 +40,22 @@ function overlayButtonSetup(){
         const form = document.querySelector('.taskForm');
         form.reset();
     })
+
+    const add = document.querySelector('.addButton');
+    add.addEventListener('click', () => {
+        const title = document.querySelector('#title');
+        const description = document.querySelector('#description');
+        const dueDate = document.querySelector('#duedate');
+        const priority = document.querySelector('#priority');
+        const project = document.querySelector('#project');
+
+        allTodos.addTodo(title.value, description.value, dueDate.value, priority.value, project.value)
+        clearContent();
+        renderAllTodos(allTodos.getArrayTodos());
+    })
 }
+
+
 
 function renderAddTasks(){
     createCategory(document.querySelector('.addTasks'), 'addTodo', 'Add To-Do', plus);

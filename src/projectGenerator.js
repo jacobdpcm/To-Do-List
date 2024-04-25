@@ -13,4 +13,25 @@ function generateProject(name){
     return {changeName, makeProjectArrayTodos, getProjectArrayTodos};
 }
 
-export { generateProject };
+const allProjects = (function(){
+    let allProjectsArray = [];
+
+    const getProjects = () => {return allProjectsArray};
+    const addProject = (projectName) => {
+        allProjectsArray.push(projectName);
+        allProjectsArray.sort();
+    };
+    const removeProject = (projectName) => {
+        allProjectsArray.splice(allProjectsArray.indexOf(projectName), 1);
+    }
+
+    return {getProjects, addProject, removeProject}
+})();
+
+//Adding some projects for testing purposes:
+allProjects.addProject('Work');
+allProjects.addProject('Vacation');
+allProjects.addProject('Stream');
+console.log(allProjects.getProjects());
+
+export { generateProject, allProjects };

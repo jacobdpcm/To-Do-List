@@ -5,7 +5,9 @@ import list from './images/list.svg';
 import plus from './images/plus.svg';
 import { allTodos } from './todoGenerator.js';
 import { renderAllTodos } from './alltodosDOM.js';
+import { generateProject, allProjects } from './projectGenerator.js';
 
+//DOM setup for the sidebar
 function createCategory(parent, className, catName, imageName){
     const categories = parent;
     const category = document.createElement('div');
@@ -40,6 +42,12 @@ function overlayButtonSetup(){
         const form = document.querySelector('.taskForm');
         form.reset();
     })
+    const cancelProject = document.querySelector('.cancelProjectButton');
+    cancelProject.addEventListener('click', () => {
+        toggleOverlay('.overlayProject');
+        const form = document.querySelector('.projectForm');
+        form.reset();
+    })
 
     const add = document.querySelector('.addButton');
     add.addEventListener('click', () => {
@@ -53,9 +61,14 @@ function overlayButtonSetup(){
         clearContent();
         renderAllTodos(allTodos.getArrayTodos());
     })
+
+    const addProject = document.querySelector('.addProjectButton');
+    addProject.addEventListener('click', () => {
+        const projectField = document.querySelector('.projectName');
+        allProjects.addProject(projectField.value);
+        //Rendering the Projects in the sidebar goes here
+    })
 }
-
-
 
 function renderAddTasks(){
     createCategory(document.querySelector('.addTasks'), 'addTodo', 'Add To-Do', plus);
@@ -63,6 +76,8 @@ function renderAddTasks(){
     buttonTodo.addEventListener('click', () => {toggleOverlay('.overlay')});
 
     createCategory(document.querySelector('.addTasks'), 'addProject', 'Add Project', plus);
+    const buttonProject = document.querySelector('.addProject');
+    buttonProject.addEventListener('click', () => {toggleOverlay('.overlayProject')});
 
     overlayButtonSetup();
 }

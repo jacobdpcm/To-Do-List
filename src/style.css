@@ -16,7 +16,8 @@ form h1{
     text-align: center;
 }
 
-.overlay{
+.overlay,
+.overlayProject{
     position: fixed;
     width: 100%;
     height: 100%;
@@ -25,6 +26,8 @@ form h1{
     display: flex;
     justify-content: center;
 }
+
+
 
 form{
     display: flex;

@@ -64,9 +64,17 @@ function overlayButtonSetup(){
 
     const addProject = document.querySelector('.addProjectButton');
     addProject.addEventListener('click', () => {
-        const projectField = document.querySelector('.projectName');
+        const projectField = document.querySelector('#projectName');
         allProjects.addProject(projectField.value);
         //Rendering the Projects in the sidebar goes here
+        const projectsDOM = document.querySelector('.projects');
+        projectsDOM.innerHTML = '';
+        const currentProjects = allProjects.getProjects();
+        currentProjects.forEach((project) => {
+            const projectContainer = document.createElement('div');
+            projectContainer.textContent = project;
+            projectsDOM.appendChild(projectContainer);           
+        })
     })
 }
 
@@ -83,8 +91,8 @@ function renderAddTasks(){
 }
 
 function categorySetup(){
-    createCategory(document.querySelector('.categories'), 'today', 'Today', sun);
     createCategory(document.querySelector('.categories'), 'all', 'All To-Dos', list);
+    createCategory(document.querySelector('.categories'), 'today', 'Today', sun);
     createCategory(document.querySelector('.categories'), 'week', 'This Week', calender);
     createCategory(document.querySelector('.categories'), 'special', 'Special Events', party);
 }

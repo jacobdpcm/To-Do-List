@@ -28,10 +28,18 @@ const allProjects = (function(){
     return {getProjects, addProject, removeProject}
 })();
 
-//Adding some projects for testing purposes:
+//Adding and rendering some projects for testing purposes:
 allProjects.addProject('Work');
 allProjects.addProject('Vacation');
 allProjects.addProject('Stream');
 console.log(allProjects.getProjects());
+const projectsDOM = document.querySelector('.projects');
+const currentProjects = allProjects.getProjects();
+currentProjects.forEach((project) => {
+    const projectContainer = document.createElement('div');
+    projectContainer.textContent = project;
+    projectsDOM.appendChild(projectContainer);           
+})
+
 
 export { generateProject, allProjects };

@@ -1,0 +1,1 @@
+//Render each group of projects when the project is clicked

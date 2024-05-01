@@ -1,4 +1,4 @@
-function generateProject(name){
+/*function generateProject(name){
     let projectName = name;
     let projectTodos = [];
 
@@ -11,10 +11,14 @@ function generateProject(name){
     const getProjectArrayTodos = () => {return projectTodos};
 
     return {changeName, makeProjectArrayTodos, getProjectArrayTodos};
-}
+}*/
+import "./todoGenerator.js";
+
 
 const allProjects = (function(){
     let allProjectsArray = [];
+    let currentProjectName = '';
+    let currentProjectArray = [];
 
     const getProjects = () => {return allProjectsArray};
     const addProject = (projectName) => {
@@ -25,21 +29,22 @@ const allProjects = (function(){
         allProjectsArray.splice(allProjectsArray.indexOf(projectName), 1);
     }
 
-    return {getProjects, addProject, removeProject}
+    const getCurrentProject = () => {return currentProjectArray};
+    const setCurrentProjectName = (projectName) => {currentProjectName = projectName};
+    const generateCurrentProject = (arrayTodos) => {
+        currentProjectArray = arrayTodos.filter(function(todo){
+            return todo.todoProject === currentProjectName;
+        })
+    }
+
+    return {getProjects, addProject, removeProject, getCurrentProject, setCurrentProjectName, generateCurrentProject}
 })();
 
-//Adding and rendering some projects for testing purposes:
+//Adding some projects for placeholder purposes:
 allProjects.addProject('Work');
 allProjects.addProject('Vacation');
 allProjects.addProject('Stream');
 console.log(allProjects.getProjects());
-const projectsDOM = document.querySelector('.projects');
-const currentProjects = allProjects.getProjects();
-currentProjects.forEach((project) => {
-    const projectContainer = document.createElement('div');
-    projectContainer.textContent = project;
-    projectsDOM.appendChild(projectContainer);           
-})
 
 
-export { generateProject, allProjects };
+export { allProjects };

@@ -7,8 +7,11 @@ function generateDOMTodoProperty(propertyClassName, propertyIdentifier, property
     parent.appendChild(property);
 }
 
+//For Rendering any specific set of todos
 function renderAllTodos(arrayTodos){
     const content = document.querySelector('.content');
+    content.innerHTML = '';
+
     const wrapper = document.createElement('div');
     wrapper.classList.add('allTodoWrapper');
     content.appendChild(wrapper);

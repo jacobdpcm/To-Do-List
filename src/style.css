@@ -97,7 +97,8 @@ form>div{
 
 .addTodo,
 .addProject,
-.categories{
+.categories,
+.projects{
     cursor: pointer;
 }
 

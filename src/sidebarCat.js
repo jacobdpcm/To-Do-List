@@ -35,6 +35,23 @@ function clearContent(){
     content.innerHTML = '';
 }
 
+function renderProjects(){
+    const projectsDOM = document.querySelector('.projects');
+    projectsDOM.innerHTML = '';
+    const currentProjects = allProjects.getProjects();
+    currentProjects.forEach((project) => {
+    const projectContainer = document.createElement('div');
+    projectContainer.classList.add('project');
+    projectContainer.textContent = project;
+    projectsDOM.appendChild(projectContainer);
+    
+    projectContainer.addEventListener('click', () => {
+        allProjects.setCurrentProjectName(project);
+        allProjects.generateCurrentProject(allTodos.getArrayTodos());
+        renderAllTodos(allProjects.getCurrentProject());
+    })
+})}
+
 function overlayButtonSetup(){
     const cancel = document.querySelector('.cancelButton');
     cancel.addEventListener('click', () => {
@@ -67,14 +84,7 @@ function overlayButtonSetup(){
         const projectField = document.querySelector('#projectName');
         allProjects.addProject(projectField.value);
         //Rendering the Projects in the sidebar goes here
-        const projectsDOM = document.querySelector('.projects');
-        projectsDOM.innerHTML = '';
-        const currentProjects = allProjects.getProjects();
-        currentProjects.forEach((project) => {
-            const projectContainer = document.createElement('div');
-            projectContainer.textContent = project;
-            projectsDOM.appendChild(projectContainer);           
-        })
+        renderProjects();
     })
 }
 
@@ -92,9 +102,17 @@ function renderAddTasks(){
 
 function categorySetup(){
     createCategory(document.querySelector('.categories'), 'all', 'All To-Dos', list);
+    const allTodosButton = document.querySelector('.all');
+    allTodosButton.addEventListener('click', () => {renderAllTodos(allTodos.getArrayTodos())})
+
     createCategory(document.querySelector('.categories'), 'today', 'Today', sun);
     createCategory(document.querySelector('.categories'), 'week', 'This Week', calender);
     createCategory(document.querySelector('.categories'), 'special', 'Special Events', party);
 }
 
-export { renderAddTasks, categorySetup };
+renderAddTasks();
+categorySetup();
+
+export { renderProjects }
+
+

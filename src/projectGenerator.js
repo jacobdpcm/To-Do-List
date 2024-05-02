@@ -44,6 +44,7 @@ const allProjects = (function(){
 allProjects.addProject('Work');
 allProjects.addProject('Vacation');
 allProjects.addProject('Stream');
+allProjects.addProject('Hopes and Dreams');
 console.log(allProjects.getProjects());
 
 

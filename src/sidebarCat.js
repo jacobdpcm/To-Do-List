@@ -91,7 +91,20 @@ function overlayButtonSetup(){
 function renderAddTasks(){
     createCategory(document.querySelector('.addTasks'), 'addTodo', 'Add To-Do', plus);
     const buttonTodo = document.querySelector('.addTodo');
-    buttonTodo.addEventListener('click', () => {toggleOverlay('.overlay')});
+    buttonTodo.addEventListener('click', () => {
+        //need to generate the dropdown of the current selection of projects
+        const projectInputs = document.querySelector('#project');
+        projectInputs.innerHTML = '';
+        console.log(projectInputs.innerHTML)
+        allProjects.getProjects().forEach(project => {
+            console.log(project)
+            const option = document.createElement('option');
+            option.value = project;
+            option.textContent = project;
+            projectInputs.appendChild(option);
+        })
+        toggleOverlay('.overlay')
+    });
 
     createCategory(document.querySelector('.addTasks'), 'addProject', 'Add Project', plus);
     const buttonProject = document.querySelector('.addProject');

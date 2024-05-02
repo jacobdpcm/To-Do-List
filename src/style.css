@@ -38,6 +38,21 @@ form{
 form>div{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+/*The different input boxes don't have the same height unless I set it like this for some reason*/
+input {
+    width: 136px;
+    height: 22px;
+}
+input[type='date']{
+    width: 139px;
+    height: 24px;
+}
+select {
+    width: 144px;
+    height: 28px;
 }
 
 .overlayButtons{
@@ -55,7 +70,7 @@ form>div{
     align-items: center;
     background-color: white;
     width: 20rem;
-    height: 15rem;
+    height: 17rem;
     padding: 1rem;
     margin-top: 3rem;
 }

@@ -82,7 +82,8 @@ select {
 
 
 .sidebar{
-    background-color: rgb(175, 172, 172);
+    background-color: #334155;
+    color: white;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -107,7 +108,7 @@ select {
 }
 
 .content{
-    background-color: rgb(246, 224, 130);
+    background-color: #f1f5f9;
 }
 
 .addTodo,
@@ -134,7 +135,7 @@ select {
     gap: 2rem;
     height: 7rem;
     border: 2px solid black;
-    background-color: rgb(214, 214, 160);
+    background-color: #cbd5e1;
     padding: .5rem;
     width: 550px;
 }

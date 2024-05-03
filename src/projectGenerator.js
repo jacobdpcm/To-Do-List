@@ -1,17 +1,3 @@
-/*function generateProject(name){
-    let projectName = name;
-    let projectTodos = [];
-
-    const changeName = (newName) => {projectName = newName}
-    const makeProjectArrayTodos = (project, arrayTodos) => {
-        projectTodos = arrayTodos.filter(function(todo){
-            return todo.todoProject = project;
-        })
-    };
-    const getProjectArrayTodos = () => {return projectTodos};
-
-    return {changeName, makeProjectArrayTodos, getProjectArrayTodos};
-}*/
 import "./todoGenerator.js";
 
 
@@ -24,9 +10,11 @@ const allProjects = (function(){
     const addProject = (projectName) => {
         allProjectsArray.push(projectName);
         allProjectsArray.sort();
+        updateProjectStorage();
     };
     const removeProject = (projectName) => {
         allProjectsArray.splice(allProjectsArray.indexOf(projectName), 1);
+        updateProjectStorage();
     }
 
     const getCurrentProject = () => {return currentProjectArray};
@@ -37,15 +25,23 @@ const allProjects = (function(){
         })
     }
 
-    return {getProjects, addProject, removeProject, getCurrentProject, setCurrentProjectName, generateCurrentProject}
+    const updateProjectStorage = () => {
+        const arrayProjectsSerialized = JSON.stringify(allProjectsArray);
+        localStorage.setItem('storedProjects', arrayProjectsSerialized);
+    }
+    const retrieveProjectStorage = () => {
+        allProjectsArray = JSON.parse(localStorage.getItem('storedProjects'));
+    }
+
+    return {getProjects, addProject, removeProject, getCurrentProject, setCurrentProjectName, generateCurrentProject, updateProjectStorage, retrieveProjectStorage}
 })();
 
 //Adding some projects for placeholder purposes:
-allProjects.addProject('Work');
+/*allProjects.addProject('Work');
 allProjects.addProject('Vacation');
 allProjects.addProject('Stream');
 allProjects.addProject('Hopes and Dreams');
-console.log(allProjects.getProjects());
+console.log(allProjects.getProjects());*/
 
 
 export { allProjects };

@@ -16,8 +16,12 @@ const allTodos = (function(){
     const addTodo = (title, description, dueDate, priority, project) => {
         const todo = newTodo(title, description, dueDate, priority, project);
         arrayTodos.push(todo);
+        allTodos.updateTodoStorage();
     };
-    const removeTodo = (todo) => {arrayTodos.splice(indexOf(todo, 1))}
+    const removeTodo = (todo) => {
+        arrayTodos.splice(indexOf(todo, 1));
+        updateTodoStorage();
+    }
 
     //set value to null if unchanged
     const updateTodo = (oldTodoIndex, newTitle, newDescription, newDate, newPriority, newProject, newChecked) => {
@@ -29,7 +33,15 @@ const allTodos = (function(){
         if(newChecked !== null){arrayTodos[oldTodoIndex].todoChecked = newChecked}; 
     }
 
-    return {getArrayTodos, addTodo, removeTodo, updateTodo}
+    const updateTodoStorage = () => {
+        const arrayTodosSerialized = JSON.stringify(arrayTodos);
+        localStorage.setItem('storedTodos', arrayTodosSerialized);
+    }
+    const retrieveTodoStorage = () => {
+        arrayTodos = JSON.parse(localStorage.getItem('storedTodos'));
+    }
+
+    return {getArrayTodos, addTodo, removeTodo, updateTodo, updateTodoStorage, retrieveTodoStorage}
 })();
 
 export { allTodos }

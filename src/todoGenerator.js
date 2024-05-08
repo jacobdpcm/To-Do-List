@@ -39,6 +39,7 @@ const allTodos = (function(){
     }
     const retrieveTodoStorage = () => {
         arrayTodos = JSON.parse(localStorage.getItem('storedTodos'));
+        if(arrayTodos === null){arrayTodos = []}
     }
 
     return {getArrayTodos, addTodo, removeTodo, updateTodo, updateTodoStorage, retrieveTodoStorage}

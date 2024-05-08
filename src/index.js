@@ -4,7 +4,7 @@ import { allTodos } from './todoGenerator.js';
 import { allProjects } from './projectGenerator';
 import { renderAllTodos } from './alltodosDOM.js';
 
-
+console.log(allTodos.getArrayTodos())
 
 
 //Get todos and projects from localStorage

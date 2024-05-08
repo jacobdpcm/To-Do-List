@@ -31,6 +31,7 @@ const allProjects = (function(){
     }
     const retrieveProjectStorage = () => {
         allProjectsArray = JSON.parse(localStorage.getItem('storedProjects'));
+        if(allProjectsArray === null){allProjectsArray = []}
     }
 
     return {getProjects, addProject, removeProject, getCurrentProject, setCurrentProjectName, generateCurrentProject, updateProjectStorage, retrieveProjectStorage}

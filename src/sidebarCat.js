@@ -41,6 +41,8 @@ function renderProjects(){
     const currentProjects = allProjects.getProjects();
     currentProjects.forEach((project) => {
     const projectContainer = document.createElement('div');
+    //Add means to remove projects here
+
     projectContainer.classList.add('project');
     projectContainer.textContent = project;
     projectsDOM.appendChild(projectContainer);

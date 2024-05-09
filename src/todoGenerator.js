@@ -19,7 +19,7 @@ const allTodos = (function(){
         allTodos.updateTodoStorage();
     };
     const removeTodo = (todo) => {
-        arrayTodos.splice(indexOf(todo, 1));
+        arrayTodos.splice(arrayTodos.indexOf(todo), 1);
         updateTodoStorage();
     }
 

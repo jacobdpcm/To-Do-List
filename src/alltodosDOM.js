@@ -42,12 +42,28 @@ function renderAllTodos(array){
         details.classList.add('details');
         todoArea.appendChild(details);
 
+        
         generateDOMTodoProperty('todoTitle', '',todo.todoTitle, titleDescription);
         generateDOMTodoProperty('todoDescription', '',todo.todoDescription, titleDescription);
         generateDOMTodoProperty('todoDueDate', 'Due: ',todo.todoDueDate, details);
         generateDOMTodoProperty('todoPriority', 'Priority: ',todo.todoPriority, details);
         generateDOMTodoProperty('todoProject', 'Project: ',todo.todoProject, details);
-        generateDOMTodoProperty('todoChecked', 'Completed: ',todo.todoChecked, details);
+
+        //Check or Uncheck a Todo
+        if(todo.todoChecked === true){
+            todoArea.classList.add('checked');
+        } 
+        todoArea.addEventListener('click', () => {
+            if(todo.todoChecked === false){
+                allTodos.updateTodo(allTodos.getArrayTodos().indexOf(todo), null, null, null, null, null, true);
+                todoArea.classList.add('checked');
+            } else {
+                allTodos.updateTodo(allTodos.getArrayTodos().indexOf(todo), null, null, null, null, null, false);
+                todoArea.classList.remove('checked');
+            }
+
+        })
+
     });
 }
 

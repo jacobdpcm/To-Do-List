@@ -169,3 +169,7 @@ select {
     gap: 2rem;
     justify-content: center;
 }
+
+.checked {
+    background-color: rgb(27, 178, 55);
+}

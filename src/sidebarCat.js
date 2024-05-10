@@ -5,7 +5,7 @@ import list from './images/list.svg';
 import plus from './images/plus.svg';
 import { allTodos } from './todoGenerator.js';
 import { renderAllTodos } from './alltodosDOM.js';
-import { generateProject, allProjects } from './projectGenerator.js';
+import { allProjects } from './projectGenerator.js';
 
 //DOM setup for the sidebar
 function createCategory(parent, className, catName, imageName){
@@ -44,8 +44,8 @@ function renderProjects(){
     projectContainer.classList.add('project');
     projectContainer.textContent = project;
     projectsDOM.appendChild(projectContainer);
-    //Add means to remove projects here
 
+    //Means to remove projects
     const xProjectButton = document.createElement('div');
     xProjectButton.classList.add('xProjectButton');
     xProjectButton.textContent = 'X';
@@ -61,13 +61,9 @@ function renderProjects(){
             renderProjects();
             const content = document.querySelector('.content');
             content.innerHTML = '';
-
         }
     })
-
-
-
-    
+   
     projectContainer.addEventListener('click', () => {
         allProjects.setCurrentProjectName(project);
         allProjects.generateCurrentProject(allTodos.getArrayTodos());

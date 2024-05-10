@@ -31,6 +31,7 @@ const allTodos = (function(){
         if(newPriority !== null){arrayTodos[oldTodoIndex].todoPriority = newPriority};
         if(newProject !== null){arrayTodos[oldTodoIndex].todoProject = newProject};
         if(newChecked !== null){arrayTodos[oldTodoIndex].todoChecked = newChecked}; 
+        updateTodoStorage();
     }
 
     const updateTodoStorage = () => {

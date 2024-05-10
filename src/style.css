@@ -108,6 +108,13 @@ select {
 .project {
     padding: .5rem;
     padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.xProjectButton {
+    padding: .5rem;
 }
 
 .addTodo,

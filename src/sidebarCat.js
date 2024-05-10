@@ -41,11 +41,32 @@ function renderProjects(){
     const currentProjects = allProjects.getProjects();
     currentProjects.forEach((project) => {
     const projectContainer = document.createElement('div');
-    //Add means to remove projects here
-
     projectContainer.classList.add('project');
     projectContainer.textContent = project;
     projectsDOM.appendChild(projectContainer);
+    //Add means to remove projects here
+
+    const xProjectButton = document.createElement('div');
+    xProjectButton.classList.add('xProjectButton');
+    xProjectButton.textContent = 'X';
+    projectContainer.appendChild(xProjectButton);
+    xProjectButton.addEventListener('click', () => {
+        if (confirm('Are you sure you want to delete the entire project and all to-dos within?')){
+            allProjects.setCurrentProjectName(project);
+            allProjects.generateCurrentProject(allTodos.getArrayTodos())
+            allProjects.getCurrentProject().forEach(todoDeleted => {
+                allTodos.removeTodo(todoDeleted);
+            })
+            allProjects.removeProject(project);
+            renderProjects();
+            const content = document.querySelector('.content');
+            content.innerHTML = '';
+
+        }
+    })
+
+
+
     
     projectContainer.addEventListener('click', () => {
         allProjects.setCurrentProjectName(project);
@@ -78,6 +99,8 @@ function overlayButtonSetup(){
 
         allTodos.addTodo(title.value, description.value, dueDate.value, priority.value, project.value)
         clearContent();
+        const form = document.querySelector('.taskForm');
+        form.reset();
         renderAllTodos(allTodos.getArrayTodos());
     })
 
@@ -87,6 +110,9 @@ function overlayButtonSetup(){
         allProjects.addProject(projectField.value);
         //Rendering the Projects in the sidebar goes here
         renderProjects();
+        const form = document.querySelector('.projectForm');
+        form.reset();
+        toggleOverlay('.overlayProject');
     })
 }
 

@@ -25,8 +25,9 @@ function renderAllTodos(array){
         xButton.textContent = 'X';
         xButton.classList.add('xButton');
         todoArea.appendChild(xButton);
-        xButton.addEventListener('click', () => {
+        xButton.addEventListener('click', (e) => {
             //use the index to delete the correct todo from the main allTodos array
+            e.stopPropagation();
             allTodos.removeTodo(todo);
             if(array !== allTodos.getArrayTodos()){
                 array.splice(array.indexOf(todo), 1)    

@@ -103,12 +103,16 @@ function overlayButtonSetup(){
     const addProject = document.querySelector('.addProjectButton');
     addProject.addEventListener('click', () => {
         const projectField = document.querySelector('#projectName');
-        allProjects.addProject(projectField.value);
-        //Rendering the Projects in the sidebar goes here
-        renderProjects();
-        const form = document.querySelector('.projectForm');
-        form.reset();
-        toggleOverlay('.overlayProject');
+        if(projectField.value === 'None' || allProjects.getProjects().includes(projectField.value)){
+            alert('Please use a different project name')
+        } else {
+            allProjects.addProject(projectField.value);
+            //Rendering the Projects in the sidebar goes here
+            renderProjects();
+            const form = document.querySelector('.projectForm');
+            form.reset();
+            toggleOverlay('.overlayProject');
+        }
     })
 }
 
@@ -119,8 +123,11 @@ function renderAddTasks(){
         //need to generate the dropdown of the current selection of projects
         const projectInputs = document.querySelector('#project');
         projectInputs.innerHTML = '';
+        const none = document.createElement('option');
+        none.value = 'None'
+        none.textContent = 'None'
+        projectInputs.appendChild(none);
         allProjects.getProjects().forEach(project => {
-            console.log(project)
             const option = document.createElement('option');
             option.value = project;
             option.textContent = project;
@@ -142,8 +149,40 @@ function categorySetup(){
     allTodosButton.addEventListener('click', () => {renderAllTodos(allTodos.getArrayTodos())})
 
     createCategory(document.querySelector('.categories'), 'today', 'Today', sun);
-    createCategory(document.querySelector('.categories'), 'week', 'This Week', calender);
-    createCategory(document.querySelector('.categories'), 'special', 'Special Events', party);
+    const todayButton = document.querySelector('.today');
+    todayButton.addEventListener('click', () => {
+        const today = new Date();
+        let year = today.getFullYear().toString();
+        let day = today.getDate().toString()
+        if(day.length === 1){day = 0 + day}
+        let month = (today.getMonth() + 1).toString()
+        if(month.length === 1){month = 0 + month}
+        console.log(year + '-' + month + '-' + day)
+        renderAllTodos(allTodos.getArrayTodos().filter((todo) => {
+            console.log(todo.todoDueDate);
+            return year + '-' + month + '-' + day === todo.todoDueDate.toString();
+        }))
+    })
+
+    createCategory(document.querySelector('.categories'), 'month', 'This Month', calender);
+    const monthButton = document.querySelector('.month');
+    monthButton.addEventListener('click', () => {
+        const today = new Date();
+        let year = today.getFullYear().toString();
+        let day = today.getDate().toString()
+        if(day.length === 1){day = 0 + day}
+        let month = (today.getMonth() + 1).toString()
+        if(month.length === 1){month = 0 + month}
+        renderAllTodos(allTodos.getArrayTodos().filter((todo) => {
+            return year + '-' + month === todo.todoDueDate.toString().slice(0, 7)
+        }))
+    })
+
+    createCategory(document.querySelector('.categories'), 'important', 'Important', party);
+    const important = document.querySelector('.important');
+    important.addEventListener('click', () => {
+        renderAllTodos(allTodos.getArrayTodos().filter((todo) => {return todo.todoPriority === 'High'}))
+    })
 }
 
 renderAddTasks();
